@@ -1,0 +1,27 @@
+.video {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+#videoContainer > img {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+}
+#finishBtn {
+  background-color: #4a81bd;
+}
+#saveBtn {
+  background-color: #d9705d;
+}
+#cancelBtn {
+  background-color: #75b06d;
+}
+@media screen and (max-width: 393px) {
+  #cameraButtons {
+    width: 100%;
+  }
+}
