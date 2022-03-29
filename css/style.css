@@ -12,13 +12,13 @@
   object-fit: cover;
 }
 #finishBtn {
-  background-color: #4a81bd;
+  background-color: #75b06d;
 }
 #saveBtn {
-  background-color: #d9705d;
+  background-color: #4a81bd;
 }
 #cancelBtn {
-  background-color: #75b06d;
+  background-color: #d9705d;
 }
 @media screen and (max-width: 393px) {
   #cameraButtons {

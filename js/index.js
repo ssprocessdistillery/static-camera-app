@@ -22,7 +22,7 @@ if (hasGetUserMedia()) {
   const contrastSlider = document.getElementById('contrast');
   const resetBtn = document.querySelector('#reset');
   const desaturateCheckBox = document.getElementById('desaturate');
-  let cameraFacing = 'environment';
+  let cameraFacing = 'user';
   let pictureArray = [];
   let picturesBtn = document.createElement('select');
   // navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
@@ -34,24 +34,6 @@ if (hasGetUserMedia()) {
       parent.removeChild(parent.firstChild);
     }
   }
-
-  saveBtn.onclick = function () {
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.filter = `brightness(${brightnessSlider.value}) contrast(${contrastSlider.value})`;
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    img.src = canvas.toDataURL('image/png');
-    video.style.display = 'none';
-    pictureArray.push(img.src);
-    displayPhotos();
-    displayVideo();
-  };
-
-  finishBtn.onclick = function () {
-    if (pictureArray.length === 0) {
-      alert('Please take a picture before finishing');
-    }
-  };
 
   const displayVideo = () => {
     let canvasEl = document.querySelector('canvas');
@@ -68,6 +50,30 @@ if (hasGetUserMedia()) {
       .getUserMedia(constraints)
       .then(gotStream)
       .catch(handleError);
+  };
+
+  displayVideo();
+
+  saveBtn.onclick = function () {
+    if (window.stream) {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.filter = `brightness(${brightnessSlider.value}) contrast(${contrastSlider.value})`;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      img.src = canvas.toDataURL('image/png');
+      video.style.display = 'none';
+      pictureArray.push(img.src);
+      displayPhotos();
+      displayVideo();
+    } else {
+      alert('Please select a camera');
+    }
+  };
+
+  finishBtn.onclick = function () {
+    if (pictureArray.length === 0) {
+      alert('Please take a picture before finishing');
+    }
   };
 
   function displayPhotos() {
