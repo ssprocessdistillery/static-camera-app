@@ -81,6 +81,7 @@ if (hasGetUserMedia()) {
       stream.getTracks().forEach((track) => track.stop());
     }
     let thumbnail = document.createElement('img');
+    let videoTrack = window.stream.getVideoTracks();
     thumbnail.src = pictureArray[pictureArray.length - 1];
     thumbnail.classList.add('thumbnail');
     thumbnail.addEventListener('click', () => {
@@ -94,8 +95,10 @@ if (hasGetUserMedia()) {
       thumbnail.addEventListener('click', () => {
         img.src = thumbnail.src;
         video.style.display = 'none';
-        if (window.stream) {
-          window.stream.getTracks().forEach((track) => track.stop());
+        if (videoTrack[0].enabled){
+          videoTrack[0].enabled = false;
+        } else {
+          videoTrack[0].enabled = true;
         }
       });
     }
