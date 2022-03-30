@@ -93,7 +93,7 @@ if (hasGetUserMedia()) {
     for (let i = 0; i < pictureArray.length; i++) {
       thumbnail = document.createElement('img');
       thumbnail.src = pictureArray[i];
-      thumbnail.classList.add('thumbnail', 'h-0', 'w-100', 'h-lg-25', 'mt-2');
+      thumbnail.classList.add('thumbnail', 'h-0', 'w-100', 'h-lg-25');
       thumbnail.addEventListener('click', () => {
         img.src = thumbnail.src;
         video.style.display = 'none';
@@ -103,7 +103,14 @@ if (hasGetUserMedia()) {
           videoTrack[0].enabled = true;
         }
       });
-      removePhotoBtn.classList.add('btn', 'btn-danger', 'mt-2');
+      removePhotoBtn.classList.add(
+        'btn',
+        'btn-danger',
+        'mt-2',
+        'h-0',
+        'w-100',
+        'text-center'
+      );
       removePhotoBtn.innerText = 'Remove';
       removePhotoBtn.addEventListener('click', () => {
         thumbnailEl.removeChild(thumbnail);
