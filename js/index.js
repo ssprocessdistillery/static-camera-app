@@ -97,13 +97,13 @@ if (hasGetUserMedia()) {
       thumbnail.addEventListener('click', () => {
         img.src = thumbnail.src;
         video.style.display = 'none';
-        if (videoTrack[0].enabled){
+        if (videoTrack[0].enabled) {
           videoTrack[0].enabled = false;
         } else {
           videoTrack[0].enabled = true;
         }
       });
-      removePhotoBtn.classList.add('btn', 'btn-danger');
+      removePhotoBtn.classList.add('btn', 'btn-danger', 'mt-2');
       removePhotoBtn.innerText = 'Remove';
       removePhotoBtn.addEventListener('click', () => {
         thumbnailEl.removeChild(thumbnail);
@@ -113,12 +113,12 @@ if (hasGetUserMedia()) {
       thumbnailEl.appendChild(removePhotoBtn);
     }
     document.querySelector('.thumbnails').appendChild(thumbnail);
+  }
+  const removePhoto = () => {
+    let thumbnail = document.querySelector('.thumbnail');
+    thumbnail.remove();
+    pictureArray.pop();
   };
-const removePhoto = () => {
-  let thumbnail = document.querySelector('.thumbnail');
-  thumbnail.remove();
-  pictureArray.pop();
-}
 
   cancelBtn.onclick = function () {
     let canvasEl = document.querySelector('canvas');
