@@ -22,6 +22,7 @@ if (hasGetUserMedia()) {
   const contrastSlider = document.getElementById('contrast');
   const resetBtn = document.querySelector('#reset');
   const desaturateCheckBox = document.getElementById('desaturate');
+  let thumbnailEl = document.querySelector('.thumbnails');
   let cameraFacing = 'user';
   let pictureArray = [];
   let picturesBtn = document.createElement('select');
@@ -81,6 +82,7 @@ if (hasGetUserMedia()) {
       stream.getTracks().forEach((track) => track.stop());
     }
     let thumbnail = document.createElement('img');
+    let removePhotoBtn = document.createElement('button');
     let videoTrack = window.stream.getVideoTracks();
     thumbnail.src = pictureArray[pictureArray.length - 1];
     thumbnail.classList.add('thumbnail');
@@ -101,9 +103,22 @@ if (hasGetUserMedia()) {
           videoTrack[0].enabled = true;
         }
       });
+      removePhotoBtn.classList.add('btn', 'btn-danger');
+      removePhotoBtn.innerText = 'Remove';
+      removePhotoBtn.addEventListener('click', () => {
+        thumbnailEl.removeChild(thumbnail);
+        pictureArray.splice(i, 1);
+        thumbnailEl.removeChild(removePhotoBtn);
+      });
+      thumbnailEl.appendChild(removePhotoBtn);
     }
     document.querySelector('.thumbnails').appendChild(thumbnail);
-  }
+  };
+const removePhoto = () => {
+  let thumbnail = document.querySelector('.thumbnail');
+  thumbnail.remove();
+  pictureArray.pop();
+}
 
   cancelBtn.onclick = function () {
     let canvasEl = document.querySelector('canvas');
