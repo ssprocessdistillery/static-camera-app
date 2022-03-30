@@ -93,7 +93,7 @@ if (hasGetUserMedia()) {
     for (let i = 0; i < pictureArray.length; i++) {
       thumbnail = document.createElement('img');
       thumbnail.src = pictureArray[i];
-      thumbnail.classList.add('thumbnail', 'h-0', 'w-100', 'h-lg-25');
+      thumbnail.classList.add('thumbnail', 'h-0', 'w-100', 'h-lg-25', 'mt-2');
       thumbnail.addEventListener('click', () => {
         img.src = thumbnail.src;
         video.style.display = 'none';
@@ -106,11 +106,11 @@ if (hasGetUserMedia()) {
       removePhotoBtn.classList.add(
         'btn',
         'btn-danger',
-        'mt-2',
+        'mt-4',
         'h-auto',
         'w-auto'
       );
-      removePhotoBtn.innerHTML = `<h6>X</h6>`;
+      removePhotoBtn.innerText = 'X';
       removePhotoBtn.addEventListener('click', () => {
         thumbnailEl.removeChild(thumbnail);
         pictureArray.splice(i, 1);
