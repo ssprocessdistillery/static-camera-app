@@ -107,11 +107,10 @@ if (hasGetUserMedia()) {
         'btn',
         'btn-danger',
         'mt-2',
-        'h-0',
-        'w-100',
-        'text-center'
+        'h-auto',
+        'w-auto'
       );
-      removePhotoBtn.innerText = 'Remove';
+      removePhotoBtn.innerHTML = `<h6>X</h6>`;
       removePhotoBtn.addEventListener('click', () => {
         thumbnailEl.removeChild(thumbnail);
         pictureArray.splice(i, 1);
